@@ -3,42 +3,58 @@ import requests
 import requests_cache
 from selenium import webdriver
 import pandas as pd
+import numpy as np
 
 requests_cache.install_cache('Task3/real_estate_cache')
 
-url = f"https://batdongsan.com.vn/ban-can-ho-chung-cu-quan-7/p1" 
 data = []
-driver = webdriver.Edge()
-try:
-    driver.get(url)
-    driver.implicitly_wait(5)
-    soup = driver.page_source
-    source = BeautifulSoup(soup, 'html.parser')
-    div_elements = source.find_all('div', class_='js__card')
-    for i in range(len(div_elements)):
-        try:
-            title = div_elements[1].find(class_='pr-title').text.strip()
-            price = div_elements[i].find(class_='re__card-config-price').text.strip()
-            area = div_elements[i].find(class_='re__card-config-area').text.strip()
-            toilet = div_elements[i].find(class_='re__card-config-toilet').text
-            bedroom = div_elements[i].find(class_='re__card-config-bedroom').text
-            description = div_elements[i].find(class_='re__card-description').text.strip()
-            publisher = div_elements[i].find(class_='re__card-published-info-agent-profile-name').text.strip()
-            location = div_elements[i].find(class_='re__card-location').text.strip()
-            data.append({
-                'title': title,
-                'price': price,
-                'area': area,
-                'toilet': toilet,
-                'bedroom': bedroom,
-                'description': description,
-                'publisher': publisher,
-                'location': location
-            })    
+driver = webdriver.Chrome()
+div_list = []
+numbers = int(input("Enter the number of pages you want to crawl: "))
+for index in range(1,numbers+1):
+    url = f"https://batdongsan.com.vn/ban-can-ho-chung-cu-quan-7/p{index}"
+    driver = webdriver.Chrome()
+    try:
+        driver.get(url)
+        driver.implicitly_wait(10)
+        soup = driver.page_source
+        source = BeautifulSoup(soup, 'html.parser')
+        div_list += source.find_all('div', class_='js__card')
+    except Exception as e:
+        print('err on web', index)
+        continue
+    finally:
+        # Close the browser window
+        driver.quit()
+
+for i in range(len(div_list)):
+    try:
+        try:    
+            title = div_list[i].find(class_='pr-title').text.strip()
         except:
-            continue
-finally:
-    driver.quit()
-    print(data)
-    
-df.to_excel('Task3/data.xlsx', index=False)
+            title = div_list[i].find(class_='js__card-title').text.strip()
+        price = div_list[i].find(class_='re__card-config-price').text.strip()
+        area = div_list[i].find(class_='re__card-config-area').text.strip()
+        try:
+            toilet = div_list[i].find(class_='re__card-config-toilet').text.strip()
+        except:
+            toilet = np.nan
+        try:
+            bedroom = div_list[i].find(class_='re__card-config-bedroom').text.strip()
+        except:
+            bedroom = np.nan
+        try:
+            description = div_list[i].find(class_='re__card-description').text.strip()
+        except:
+            description = np.nan
+        try:
+            publisher = div_list[i].find(class_='re__card-published-info-agent-profile-name').text.strip()
+        except:
+            publisher = np.nan
+        print({'Title': title, 'Price': price, 'Area': area, 'Toilet': toilet, 'Bedroom': bedroom, 'Description': description, 'Publisher': publisher})
+        data.append({'Title': title, 'Price': price, 'Area': area, 'Toilet': toilet, 'Bedroom': bedroom, 'Description': description, 'Publisher': publisher})
+    except:
+        print("err on", i)
+        continue
+df = pd.DataFrame(data)
+df.to_excel("Task3/databds.xlsx", index=False)
