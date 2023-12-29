@@ -62,13 +62,14 @@ Task 3 involves web scraping data from a real estate website and processing it u
 
 ## File Structure 
 The workspace contains the following files:
-  - real_estate_cache.sqlite: This is the SQLite database where the scraped data is cached.
-  - main.py: This is the main Python script that scrapes the data and processes it
-  - databds.xlsx: This is the Excel file where the scraped data is stored
+  - `real_estate_cache.sqlite`: This is the SQLite database where the scraped data is cached.
+  - `main.py`: This is the main Python script that scrapes the data and processes it
+  - `databds.xlsx`: This is the Excel file where the scraped data is stored
 
 ## Requirements
   - Python 3.x
-  - pandas library (for handling data)x  
+  - numpy library (for handling data)
+  - pandas library (for handling data)
   - BeautifulSoup library (for web scraping)
   - requests library (for making HTTP requests)
   - requests_cache library (for caching HTTP requests)
@@ -95,13 +96,12 @@ Task 4 involves Python programming. More details are needed to provide a complet
 
 ## File Structure
 The workspace contains the following file:
-
-  - main.py: This is the main script where the Node and NestedSetModel classes are defined and used.
+  - `main.py`: This is the main script where the Node and NestedSetModel classes are defined and used.
 
 ### Classes
-  - Node: This class represents a node in the tree. Each node has an id, children, left, and right attributes. The id is a unique identifier for the node, children is a list of child nodes, and left and right are used for the Nested Set Model representation.
+  - `Node`: This class represents a node in the tree. Each node has an id, children, left, and right attributes. The id is a unique identifier for the node, children is a list of child nodes, and left and right are used for the Nested Set Model representation.
 
-  - NestedSetModel: This class is used to convert a tree of Node objects into a Nested Set Model. It also provides methods to retrieve parent-child relationships and print the Nested Set Model.
+  - `NestedSetModel`: This class is used to convert a tree of Node objects into a Nested Set Model. It also provides methods to retrieve parent-child relationships and print the Nested Set Model.
 
 ## Instructions 
 To use this script, you need to create a tree of Node objects and pass the root node to the NestedSetModel class.
