@@ -83,6 +83,7 @@ Install the required Python libraries using pip:
   - `pip install requests`
   - `pip install requests-cache`
   - `pip install selenium`
+
 Run the main.py script: python main.py
 The script will scrape data from the real estate website, process it, and store it in data.xlsx and real_estate_cache.sqlite.
 
