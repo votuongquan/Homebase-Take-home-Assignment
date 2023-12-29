@@ -85,7 +85,27 @@ Install the required Python libraries using pip:
   - `pip install selenium`
 
 Run the main.py script: python main.py
+
 The script will scrape data from the real estate website, process it, and store it in data.xlsx and real_estate_cache.sqlite.
+
+# Task 4:Nested Set Model Implementation
+
+## Description
+Task 4 involves Python programming. More details are needed to provide a complete description.
+
+## File Structure
+The workspace contains the following file:
+
+  - main.py: This is the main script where the Node and NestedSetModel classes are defined and used.
+
+### Classes
+  - Node: This class represents a node in the tree. Each node has an id, children, left, and right attributes. The id is a unique identifier for the node, children is a list of child nodes, and left and right are used for the Nested Set Model representation.
+
+  - NestedSetModel: This class is used to convert a tree of Node objects into a Nested Set Model. It also provides methods to retrieve parent-child relationships and print the Nested Set Model.
+
+## Instructions 
+To use this script, you need to create a tree of Node objects and pass the root node to the NestedSetModel class.
+I gave an crystal clear example in the script
 
 
 # Task 5: Database and SQL - Stored Procedure Creation
