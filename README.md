@@ -118,6 +118,8 @@ Task 5 involves creating a stored procedure in SQL to manage blog posts. The sto
 
 The workspace contains the following file:
 
+- `Schema_design`: This file contains the SQL commands to create the database schema.
+- `BlogPostManagement.bak`: This is a backup file for the database.
 - `stored_procedure.sql`: This file contains the SQL commands to create the stored procedure.
 
 ## Requirements
@@ -130,6 +132,7 @@ The workspace contains the following file:
 1. Open your SQL client software and connect to your SQL Server.
 2. Open the `stored_procedure.sql` file in your SQL client software.
 3. Execute the SQL commands in the `stored_procedure.sql` file to create the stored procedure.
+4. Run `example uusage` to test the procedure
 
 The stored procedure `ManageBlogPost` performs the following operations:
 
