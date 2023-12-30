@@ -7,7 +7,7 @@ class Node:
         self.left = None
         self.right = None
 
-class NestedSetModel:
+class NestedSet:
     def __init__(self):
         self.root = None
         self.node_lookup = {}
@@ -41,7 +41,7 @@ class NestedSetModel:
             relationships.setdefault(parent_id, []).append(child_id)
             self._retrieve_parent_child_relationships(child, relationships)
 
-    def print_nested_set(self):
+    def display_nested_set(self):
         for node_id, node in self.node_lookup.items():
             print(f"ID: {node_id}, Left: {node.left}, Right: {node.right}")
 
@@ -60,7 +60,12 @@ root = Node('A', [
             Node('K')]),]),
 ])
 
-nested_set_model = NestedSetModel()
+# Create a nested set model
+nested_set_model = NestedSet()
+
+# Convert from the tre root to nested set
 nested_set_model.convert_to_nested_set(root)
-nested_set_model.print_nested_set()
-print(nested_set_model.retrieve_parent_child_relationships())
+
+# Display the nested set and its parent-child relationships
+nested_set_model.display_nested_set()
+print('Relationships: ',nested_set_model.retrieve_parent_child_relationships())

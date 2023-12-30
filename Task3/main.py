@@ -1,24 +1,29 @@
-from bs4 import BeautifulSoup
 import requests
-import requests_cache
-from selenium import webdriver
-import pandas as pd
 import numpy as np
+import pandas as pd
+import requests_cache
+from bs4 import BeautifulSoup
+from selenium import webdriver
 
 requests_cache.install_cache('Task3/real_estate_cache')
 
 data = []
 driver = webdriver.Chrome()
 div_list = []
+
+# Enter the number of pages you want to crawl
 numbers = int(input("Enter the number of pages you want to crawl: "))
+
 for index in range(1,numbers+1):
     url = f"https://batdongsan.com.vn/ban-can-ho-chung-cu-quan-7/p{index}"
     driver = webdriver.Chrome()
     try:
+        # Get the web page
         driver.get(url)
         driver.implicitly_wait(10)
         soup = driver.page_source
         source = BeautifulSoup(soup, 'html.parser')
+        # Get the list of divs having class js__card
         div_list += source.find_all('div', class_='js__card')
     except Exception as e:
         print('err on web', index)
@@ -28,6 +33,7 @@ for index in range(1,numbers+1):
         driver.quit()
 
 for i in range(len(div_list)):
+    # Get the title, price, area, toilet, bedroom, description, publisher
     try:
         try:    
             title = div_list[i].find(class_='pr-title').text.strip()
@@ -56,5 +62,7 @@ for i in range(len(div_list)):
     except:
         print("err on", i)
         continue
+    
+# Save the data to an excel file
 df = pd.DataFrame(data)
 df.to_excel("Task3/databds.xlsx", index=False)

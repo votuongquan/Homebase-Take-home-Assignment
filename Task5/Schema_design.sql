@@ -1,0 +1,27 @@
+USE BlogPostManagement
+
+CREATE TABLE Users(
+	UserID INT PRIMARY KEY,
+	UserName VARCHAR(255),
+);
+
+CREATE TABLE BlogPosts(
+	PostID INT PRIMARY KEY,
+	UserID INT,
+	Title VARCHAR(255),
+	Content TEXT,
+	Created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+CREATE TABLE Comments(
+	CommentID INT PRIMARY KEY,
+	PostID INT,
+	UserID INT,
+	CommentContent TEXT,
+    CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (PostID) REFERENCES BlogPosts(PostID),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+)
+
+
