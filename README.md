@@ -75,7 +75,7 @@ The workspace contains the following files:
   - requests_cache library (for caching HTTP requests)
   - selenium library (for automating web browser interaction)
 
-## File Instructions
+## Instructions
 
 Ensure that Python 3.x is installed on your system.
 Install the required Python libraries using pip:
@@ -87,7 +87,7 @@ Install the required Python libraries using pip:
 
 Run the main.py script: python main.py
 
-The script will scrape data from the real estate website, process it, and store it in data.xlsx and real_estate_cache.sqlite.
+The script will scrape data from the real estate website, process it, and store it in databds.xlsx and real_estate_cache.sqlite.
 
 # Task 4:Nested Set Model Implementation
 
@@ -132,7 +132,7 @@ The workspace contains the following file:
 1. Open your SQL client software and connect to your SQL Server.
 2. Open the `stored_procedure.sql` file in your SQL client software.
 3. Execute the SQL commands in the `stored_procedure.sql` file to create the stored procedure.
-4. Run `example uusage` to test the procedure
+4. Run `example usage` to test the procedure
 
 The stored procedure `ManageBlogPost` performs the following operations:
 
